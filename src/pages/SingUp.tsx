@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
 import {useFormik} from "formik";
-import {useDispatch} from "react-redux";
-import {registerTC} from "../redux/reducers/registerReducers";
 import {cardsApi} from "../CardsApi/Api";
-import {Navigate, NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 type FormikErrorType = {
     email?: string
