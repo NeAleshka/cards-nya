@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import {useDispatch} from "react-redux";
 import {registerTC} from "../redux/reducers/registerReducers";
 import {cardsApi} from "../CardsApi/Api";
-import {Navigate, NavLink} from "react-router-dom";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
 
 type FormikErrorType = {
     email?: string
@@ -12,6 +12,7 @@ type FormikErrorType = {
 
 
 const SingUp = () => {
+    const navigate=useNavigate()
     const [error, setError] = useState(false)
     const formik = useFormik({
             initialValues: {
@@ -35,6 +36,7 @@ const SingUp = () => {
             },
             onSubmit: values => {
                 cardsApi.register(values.email, values.password).then(res => {
+                    navigate('/login')
                     setError(!error)
                     formik.resetForm()
                 }).catch(error => {
