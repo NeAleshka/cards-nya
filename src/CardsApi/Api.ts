@@ -9,11 +9,19 @@ const instance = axios.create({
 export const cardsApi = {
     register(email: string, password: string) {
         return instance.post<registerResponseType>('/auth/register', {email, password})
-    }
+    },
+    updateUser(name: string, avatar: string) {
+        return instance.put<UpdateUserResponseType>('/auth/me', {name, avatar})
+    },
 }
 
 
 export type registerResponseType = {
     email: string
     password: string
+}
+
+export type UpdateUserResponseType = {
+    name: string
+    avatar: string
 }
