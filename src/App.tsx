@@ -9,10 +9,15 @@ import Profile from "./pages/Profile";
 import RecoveryPass from "./pages/RecoveryPass";
 import SingUp from "./pages/SingUp";
 import {Layout} from "./components/Layout";
+import {authLogOut} from "./redux/reducers/authReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {rootReducerType} from "./redux/store";
 
 function App() {
+    const dispatch = useDispatch()
     return (
         <div className="App">
+            <button onClick={() => dispatch(authLogOut())}>logOut</button>
             <Routes>
                 <Route path={'/'} element={<Layout/>}>
                     <Route index element={<h2>Main</h2>}/>
