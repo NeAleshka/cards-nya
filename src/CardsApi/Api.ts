@@ -13,6 +13,18 @@ export const cardsApi = {
     updateUser(name: string, avatar: string) {
         return instance.put<UpdateUserResponseType>('/auth/me', {name, avatar})
     },
+    setUser () {
+        return instance.post('/auth/me')
+    }
+}
+
+export const AuthApi = {
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return instance.post('auth/login', {email, password, rememberMe})
+    },
+    logOut() {
+        return instance.delete('/auth/me')
+    },
 }
 
 
@@ -22,6 +34,6 @@ export type registerResponseType = {
 }
 
 export type UpdateUserResponseType = {
-    name: string
-    avatar: string
+    updatedUser: any,
+    error?: string
 }
