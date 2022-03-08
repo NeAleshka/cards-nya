@@ -10,8 +10,8 @@ import RecoveryPass from "./pages/RecoveryPass";
 import SingUp from "./pages/SingUp";
 import {Layout} from "./components/Layout";
 import {authLogOut} from "./redux/reducers/authReducer";
-import {useDispatch, useSelector} from "react-redux";
-import {rootReducerType} from "./redux/store";
+import {useDispatch} from "react-redux";
+import ProfileInformation from "./pages/Profile/ProfileInformation/ProfileInformation";
 
 function App() {
     const dispatch = useDispatch()
@@ -28,6 +28,7 @@ function App() {
                     <Route path={'/profile'} element={<Profile/>}/>
                     <Route path={'/recovery-pass'} element={<RecoveryPass/>}/>
                     <Route path={'/sing-up'} element={<SingUp/>}/>
+                    <Route path={'/profile/information'} element={<ProfileInformation/>}/>
                     <Route path={'/*'} element={<Navigate to={'error'}/>}/>
                 </Route>
             </Routes>
