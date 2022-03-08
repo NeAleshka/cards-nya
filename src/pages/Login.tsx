@@ -14,9 +14,9 @@ const Login = (props: propsLoginType) => {
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     useEffect(() => {
-        if (!auth){
+        if (!auth) {
             dispatch(authTC(email, password))
-        }else {
+        } else {
             navigate('/profile')
         }
 
@@ -28,20 +28,24 @@ const Login = (props: propsLoginType) => {
             <Formik
                 initialValues={{email: '', password: ''}}
                 validate={values => {
-                    const errors:any = {};
+                    const errors: any = {};
                     if (!values.email) {
                         errors.email = 'Required';
                     } else if (
                         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                     ) {
-                         errors.email = 'Invalid email address';
+                        errors.email = 'Invalid email address';
+                    }
+                    if (!values.password) {
+                        errors.password = 'Required field'
+                    } else if (values.password.length < 7) {
+                        errors.password = 'Minimal length is 7'
                     }
                     return errors;
                 }}
                 onSubmit={(values, {setSubmitting}) => {
                     setEmail(values.email)
                     setPassword(values.password)
-                    // navigate('/profile')
                 }}
             >
                 {({isSubmitting}) => (

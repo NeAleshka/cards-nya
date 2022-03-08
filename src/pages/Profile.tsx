@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useFormik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUser, updateNickNameTC} from "../redux/reducers/profileReducer";
@@ -6,8 +6,12 @@ import {rootReducerType} from "../redux/store";
 import {useNavigate} from "react-router-dom";
 
 type propsProfileType = {}
+type FormikErrorType = {
+    name?: string
+}
 
 const Profile = (props: propsProfileType) => {
+    const [error, setError] = useState(false)
     const auth = useSelector<any, rootReducerType>(state => state.auth.isAuth)
     const name = useSelector<any, rootReducerType>(state => state.profile.name)
     const dispatch = useDispatch()
@@ -17,6 +21,16 @@ const Profile = (props: propsProfileType) => {
             name: '',
             email: '',
         },
+        validate: (values) => {
+            setError(false)
+            const errors: FormikErrorType = {}
+            if (!values.name) {
+                errors.name = 'Required field'
+            } else if (values.name.length < 3) {
+                errors.name = 'Minimal length is 3'
+            }
+            return errors
+        },
         onSubmit: values => {
             dispatch(updateNickNameTC(values.name, 'https://i.pinimg.com/originals/09/05/42/0905428c0a76192d282606a5e84ebe90.png'))
         },
@@ -25,8 +39,7 @@ const Profile = (props: propsProfileType) => {
         if (auth) {
             debugger
             dispatch(fetchUser())
-        }
-        else {
+        } else {
             navigate('/login')
         }
     }, [auth])
@@ -47,20 +60,8 @@ const Profile = (props: propsProfileType) => {
                         onChange={formik.handleChange}
                         value={formik.values.name}
                     />
+                    {formik.touched.name && formik.errors && <div>{formik.errors.name}</div>}
                 </div>
-                {/*<div>*/}
-                {/*    <div>*/}
-                {/*        <label htmlFor="email">Email Address</label>*/}
-                {/*    </div>*/}
-
-                {/*    <input*/}
-                {/*        id="email"*/}
-                {/*        name="email"*/}
-                {/*        type="email"*/}
-                {/*        onChange={formik.handleChange}*/}
-                {/*        value={formik.values.email}*/}
-                {/*    />*/}
-                {/*</div>*/}
                 <button type="submit">Save</button>
             </form>
         </div>
