@@ -68,7 +68,7 @@ const Login = ( props : propsLoginType ) => {
 							<div>forgot password</div>
 						</div>
 						<div className={ style.buttonContainer }>
-							<button className={ style.button } type="submit" disabled={ isSubmitting }>login</button>
+							<button type="submit" disabled={ isSubmitting }>login</button>
 						</div>
 						<div className={ style.signUpContainer }>
 							<div>Don’t have an account?</div>

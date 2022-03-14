@@ -1,4 +1,4 @@
-.loginContainer {
+.rememberPasswordContainer {
     width: 300px;
     height: 500px;
     padding: 10px;
@@ -14,7 +14,7 @@
 .inputContainer {
 }
 
-.input {
+.inputContainer input {
     width: 95%;
     height: 40px;
     margin-top: 15px;
@@ -23,10 +23,7 @@
     border-radius: 7px;
 }
 
-.forgotContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.inputContainer div {
     margin: 10px 0;
 }
 
@@ -47,6 +44,6 @@
     border: 0;
 }
 
-.signUpContainer {
+.rememberContainer {
     margin-top: 10px;
 }
