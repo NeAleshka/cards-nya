@@ -61,6 +61,7 @@ const ProfileInformation = () => {
                 </div>
                 <button type="submit">Save</button>
             </form>
+
         </div>
     )
 }
