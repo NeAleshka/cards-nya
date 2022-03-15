@@ -1,0 +1,49 @@
+.rememberPasswordContainer {
+    width: 300px;
+    height: 500px;
+    padding: 10px;
+    margin: 20px auto;
+    border-radius: 10px;
+    background: lightgrey;
+}
+
+.titleContainer {
+    height: 120px;
+}
+
+.inputContainer {
+}
+
+.inputContainer input {
+    width: 95%;
+    height: 40px;
+    margin-top: 15px;
+    outline: none;
+    border: solid 1px lightgrey;
+    border-radius: 7px;
+}
+
+.inputContainer div {
+    margin: 10px 0;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    margin-top: 50px;
+    height: 100px;
+}
+
+.buttonContainer button {
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    color: white;
+    background-color: mediumblue;
+    border: 0;
+}
+
+.rememberContainer {
+    margin-top: 10px;
+}
