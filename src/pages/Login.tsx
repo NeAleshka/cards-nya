@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import {authTC} from '../redux/reducers/authReducer';
@@ -7,22 +7,14 @@ import {useNavigate} from 'react-router-dom';
 import style from '../style/Login.module.css';
 import Button from '../components/Button/Button';
 
-type propsLoginType = {}
 
-const Login = (props: propsLoginType) => {
+const Login = () => {
     const auth = useSelector<any, rootReducerType>(state => state.auth.isAuth);
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    useEffect(() => {
-        if (!auth) {
-            dispatch(authTC(email, password));
-        } else {
-            navigate('/profile');
-        }
-
-    }, [email, password, auth]);
+    if (auth){
+        navigate('/profile');
+    }
 
     return (
         <div className={style.loginContainer}>
@@ -44,11 +36,9 @@ const Login = (props: propsLoginType) => {
                     }
                     return errors;
                 }}
-                onSubmit={(values, {setSubmitting}) => {
-                    setEmail(values.email);
-                    setPassword(values.password);
-                }}
-            >
+                onSubmit={(values) => {
+                    dispatch(authTC(values.email, values.password));
+                }}>
                 {({isSubmitting}) => (
                     <Form>
                         <div className={style.titleContainer}>
@@ -56,9 +46,9 @@ const Login = (props: propsLoginType) => {
                             <h2>sign in</h2>
                         </div>
                         <div className={style.inputContainer}>
-                            <Field className={style.input} type="email" name="email"/>
+                            <Field className={style.input} type="email" name="email" autoComplete="username"/>
                             <ErrorMessage name="email" component="div"/>
-                            <Field className={style.input} type="password" name="password"/>
+                            <Field className={style.input} type="password" name="password"  autoComplete="current-password" />
                             <ErrorMessage name="password" component="div"/>
                         </div>
                         <div className={style.forgotContainer}>
@@ -68,7 +58,7 @@ const Login = (props: propsLoginType) => {
                             </div>
                             <div>forgot password</div>
                         </div>
-                        <Button type="submit" disabled={isSubmitting}>login</Button>
+                        <Button type="submit" disabled={isSubmitting} name={'Sing In'}/>
                         <div className={style.signUpContainer}>
                             <div>Don’t have an account?</div>
                             <div>sign up</div>

@@ -25,7 +25,7 @@ const Profile = (props: propsProfileType) => {
             </div>
             {profile.name}
             <div>
-                <NavLink style={{marginRight: '30px'}} to={'/profile/information'}>Information</NavLink>
+                <NavLink style={{marginRight: '30px'}} to={`/profile/information/`}>Information</NavLink>
             </div>
             <button onClick={() => dispatch(authLogOut())}>logOut</button>
         </div>

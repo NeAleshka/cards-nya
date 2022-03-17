@@ -16,7 +16,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path={'/'} element={<Layout/>}>
-                    <Route index element={<h2>Main</h2>}/>
+                    <Route index element={<Login/>}/>
                     <Route path={'/create-pass'} element={<CreateNewPass/>}/>
                     <Route path={'/error'} element={<Error/>}/>
                     <Route path={'/login'} element={<Login/>}/>

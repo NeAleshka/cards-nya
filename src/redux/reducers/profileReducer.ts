@@ -4,10 +4,12 @@ import {cardsApi} from "../../CardsApi/Api";
 export type ProfileUserType = {
     name: string,
     avatar: string
+
 }
 const initialState: ProfileUserType = {
     name: '',
     avatar: '',
+
 }
 
 export const profileReducer = (state = initialState, action: ActionType) => {
@@ -21,7 +23,7 @@ export const profileReducer = (state = initialState, action: ActionType) => {
             return {
                 ...state,
                 name: action.payload.name,
-                avatar: action.payload.avatar
+                avatar: action.payload.avatar,
 
             }
         case "UPDATE_AVATAR":
@@ -34,7 +36,8 @@ export const profileReducer = (state = initialState, action: ActionType) => {
     }
 }
 
-export const setUser = (name: string, avatar: string) => ({type: 'SET_USER', payload: {name, avatar}} as const)
+export const setUser = (name: string, avatar: string) => ({type: 'SET_USER', payload: {name, avatar
+    }} as const)
 
 const updateHickNameAC = (name: string) => ({
     type: 'UPDATE_NICK_NAME',
@@ -53,6 +56,7 @@ type ActionType = UpdateNickNameType | SetUser | UpdateAvatarType
 export const fetchUser = () => (dispatch: Dispatch) => {
     cardsApi.setUser()
         .then((res) => {
+            console.log(res)
             if (res.data._id) {
                 dispatch(setUser(res.data.name, res.data.avatar))
             }
@@ -76,3 +80,4 @@ export const updateNickNameTC = (name: string, avatar: string) => {
             })
     }
 }
+
