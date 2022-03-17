@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import {updateNickNameTC} from "../../../redux/reducers/profileReducer";
 
@@ -10,10 +10,11 @@ type FormikErrorType = {
 
 const ProfileInformation = () => {
     const [error, setError] = useState(false)
+    const profile = useSelector<any, any>(state => state.profile)
     const dispatch = useDispatch()
     const formik = useFormik({
         initialValues: {
-            name: '',
+            name: profile.name,
             avatar: '',
         },
         validate: (values) => {
@@ -61,6 +62,7 @@ const ProfileInformation = () => {
                 </div>
                 <button type="submit">Save</button>
             </form>
+
         </div>
     )
 }

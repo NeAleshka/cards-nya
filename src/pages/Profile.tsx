@@ -1,14 +1,11 @@
-import React, {useEffect, useState} from 'react'
-import {useFormik} from "formik";
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUser, updateNickNameTC} from "../redux/reducers/profileReducer";
+import {fetchUser} from "../redux/reducers/profileReducer";
 import {rootReducerType} from "../redux/store";
 import {NavLink, useNavigate} from "react-router-dom";
+import {authLogOut} from "../redux/reducers/authReducer";
 
 type propsProfileType = {}
-type FormikErrorType = {
-    name?: string
-}
 const Profile = (props: propsProfileType) => {
     const profile = useSelector<any, any>(state => state.profile)
     const auth = useSelector<any, rootReducerType>(state => state.auth.isAuth)
@@ -28,8 +25,9 @@ const Profile = (props: propsProfileType) => {
             </div>
             {profile.name}
             <div>
-                <NavLink style={{marginRight: '30px'}} to={'/profile/information'}>Information</NavLink>
+                <NavLink style={{marginRight: '30px'}} to={`/profile/information/`}>Information</NavLink>
             </div>
+            <button onClick={() => dispatch(authLogOut())}>logOut</button>
         </div>
     )
 }
