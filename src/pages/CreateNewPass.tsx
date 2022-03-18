@@ -1,21 +1,28 @@
 import React, {ChangeEvent, useState} from 'react'
-import {useSelector} from "react-redux";
 import style from '../style/Login.module.css';
 import {cardsApi} from "../CardsApi/Api";
+import {useNavigate, useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {rootReducerType} from "../redux/store";
 
 
 const CreateNewPass = () => {
-    const profile = useSelector<any, any>(state => state.profile)
     const [newPass, setNewPass] = useState<string>('')
+    const auth = useSelector<any, rootReducerType>(state => state.auth.isAuth);
+    const navigate=useNavigate()
+    if(!auth){
+        navigate('/login')
+    }
     const onChange = (event:ChangeEvent<HTMLInputElement>) => {
       setNewPass(event.currentTarget.value)
     }
+    const {token}=useParams()
+    console.log(token)
     const click = () => {
-    cardsApi.changePassword(newPass,profile.token).then(res=>{
-        console.log(res)
+    cardsApi.changePassword(newPass,token??'').then(res=>{
+        navigate('/login')
     })
     }
-    console.log(profile.token)
     return (
         <div className={style.loginContainer}>
             <input type={'text'} onChange={onChange}/>

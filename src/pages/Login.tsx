@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import {authTC} from '../redux/reducers/authReducer';
 import {rootReducerType} from '../redux/store';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import style from '../style/Login.module.css';
 import Button from '../components/Button/Button';
 
@@ -12,6 +12,9 @@ const Login = () => {
     const auth = useSelector<any, rootReducerType>(state => state.auth.isAuth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const redirectOnSingUp=()=>{
+        navigate('/sing-up')
+    }
     if (auth){
         navigate('/profile');
     }
@@ -56,12 +59,12 @@ const Login = () => {
                                 <input type="checkbox"/>
                                 remember me
                             </div>
-                            <div>forgot password</div>
+                            <Link to={'/recovery-pass'}>forgot password</Link>
                         </div>
                         <Button type="submit" disabled={isSubmitting} name={'Sing In'}/>
                         <div className={style.signUpContainer}>
                             <div>Don’t have an account?</div>
-                            <div>sign up</div>
+                            <Button callback={redirectOnSingUp} name={'Sing Up'}/>
                         </div>
                     </Form>
                 )}

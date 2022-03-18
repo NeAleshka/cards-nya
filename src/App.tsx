@@ -10,6 +10,7 @@ import RecoveryPass from "./pages/RecoveryPass";
 import SingUp from "./pages/SingUp";
 import {Layout} from "./components/Layout";
 import ProfileInformation from "./pages/Profile/ProfileInformation/ProfileInformation";
+import {CheckMail} from "./pages/CheckMail";
 
 function App() {
     return (
@@ -17,8 +18,9 @@ function App() {
             <Routes>
                 <Route path={'/'} element={<Layout/>}>
                     <Route index element={<Login/>}/>
-                    <Route path={'/create-pass'} element={<CreateNewPass/>}/>
+                    <Route path={'/create-pass/:token'} element={<CreateNewPass/>}/>
                     <Route path={'/error'} element={<Error/>}/>
+                    <Route path={'/check-mail'} element={<CheckMail/>}/>
                     <Route path={'/login'} element={<Login/>}/>
                     <Route path={'/test'} element={<PageTest/>}/>
                     <Route path={'/profile'} element={<Profile/>}/>

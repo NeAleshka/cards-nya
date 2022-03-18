@@ -13,8 +13,8 @@ export const registerReducers = (state=initialState, action:any) => {
 
 export const registerTC = (email:string,password:string)=>(dispatch:Dispatch) => {
   cardsApi.register(email, password).then(res=>{
-    console.log(res.data)
+    // console.log(res.data)
   }).catch(error=>{
-    console.log(error.response.data.error)
+    // console.log(error.response.data.error)
   })
 }
