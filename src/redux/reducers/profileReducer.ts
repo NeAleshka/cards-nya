@@ -9,7 +9,6 @@ export type ProfileUserType = {
 const initialState: ProfileUserType = {
     name: '',
     avatar: '',
-
 }
 
 export const profileReducer = (state = initialState, action: ActionType) => {
@@ -56,13 +55,13 @@ type ActionType = UpdateNickNameType | SetUser | UpdateAvatarType
 export const fetchUser = () => (dispatch: Dispatch) => {
     cardsApi.setUser()
         .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data._id) {
                 dispatch(setUser(res.data.name, res.data.avatar))
             }
         })
         .catch((rej) => {
-            console.log('no autorize')
+            // console.log('no authorize')
         })
 }
 export const updateNickNameTC = (name: string, avatar: string) => {
