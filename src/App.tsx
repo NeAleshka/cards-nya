@@ -11,6 +11,8 @@ import SingUp from "./pages/SingUp";
 import {Layout} from "./components/Layout";
 import ProfileInformation from "./pages/Profile/ProfileInformation/ProfileInformation";
 import {CheckMail} from "./pages/CheckMail";
+import {PacksList} from "./pages/PacksList";
+import {LayoutProfile} from "./components/LayoutProfile";
 
 function App() {
     return (
@@ -23,10 +25,13 @@ function App() {
                     <Route path={'/check-mail'} element={<CheckMail/>}/>
                     <Route path={'/login'} element={<Login/>}/>
                     <Route path={'/test'} element={<PageTest/>}/>
-                    <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={'/profile'} element={<LayoutProfile/>}>
+                        <Route index element={<Profile/>}/>
+                        <Route path={'/profile/packs-list'} element={<PacksList/>}/>
+                        <Route path={'/profile/change-data'} element={<ProfileInformation/>}/>
+                    </Route>
                     <Route path={'/recovery-pass'} element={<RecoveryPass/>}/>
                     <Route path={'/sing-up'} element={<SingUp/>}/>
-                    <Route path={'/profile/information'} element={<ProfileInformation/>}/>
                     <Route path={'/*'} element={<Navigate to={'error'}/>}/>
                 </Route>
             </Routes>

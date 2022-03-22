@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import {updateNickNameTC} from "../../../redux/reducers/profileReducer";
+import {Link, useNavigate} from "react-router-dom";
+import Button from "../../../components/Button/Button";
 
 type FormikErrorType = {
     name?: string,
@@ -10,6 +12,7 @@ type FormikErrorType = {
 
 const ProfileInformation = () => {
     const [error, setError] = useState(false)
+    const navigate=useNavigate()
     const profile = useSelector<any, any>(state => state.profile)
     const dispatch = useDispatch()
     const formik = useFormik({
@@ -61,6 +64,7 @@ const ProfileInformation = () => {
                     {formik.touched.name && formik.errors && <div>{formik.errors.name}</div>}
                 </div>
                 <button type="submit">Save</button>
+                <Button callback={()=>navigate(-1)} name={'Cancel'}/>
             </form>
 
         </div>

@@ -2,8 +2,11 @@ import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUser} from "../redux/reducers/profileReducer";
 import {rootReducerType} from "../redux/store";
-import {NavLink, useNavigate} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import {authLogOut} from "../redux/reducers/authReducer";
+import Button from "../components/Button/Button";
+import {AiTwotoneSetting} from "react-icons/all";
+
 
 type propsProfileType = {}
 const Profile = (props: propsProfileType) => {
@@ -11,6 +14,7 @@ const Profile = (props: propsProfileType) => {
     const auth = useSelector<any, rootReducerType>(state => state.auth.isAuth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
     useEffect(() => {
         if (auth) {
             dispatch(fetchUser())
@@ -20,14 +24,19 @@ const Profile = (props: propsProfileType) => {
     }, [auth])
     return (
         <div>
+
             <div>
-                <img style={{width: '200px', height: '200px'}} src={profile.avatar} alt="avatar"/>
+                <img style={{width: '200px', height: '200px',borderRadius:'15px'}} src={profile.avatar} alt="avatar"/>
             </div>
-            {profile.name}
-            <div>
-                <NavLink style={{marginRight: '30px'}} to={`/profile/information/`}>Information</NavLink>
+            <div style={{display:"flex",justifyContent:"center",fontSize:'20px'}}>
+                {profile.name}
+                <AiTwotoneSetting onClick={()=>navigate('/profile/change-data')} style={{marginLeft:'7px',cursor:'pointer'}} size={15} />
             </div>
-            <button onClick={() => dispatch(authLogOut())}>logOut</button>
+
+
+            <Button callback={() => dispatch(authLogOut())} name={'Log Out'}>logOut</Button>
+
+
         </div>
     )
 }
