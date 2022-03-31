@@ -2,20 +2,20 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import {authTC} from '../redux/reducers/authReducer';
-import {rootReducerType} from '../redux/store';
+import {RootReducerType} from '../redux/store';
 import {Link, useNavigate} from 'react-router-dom';
 import style from '../style/Login.module.css';
 import Button from '../components/Button/Button';
 
 
 const Login = () => {
-    const auth = useSelector<any, rootReducerType>(state => state.auth.isAuth);
+    const auth = useSelector<any, RootReducerType>(state => state.auth.isAuth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const redirectOnSingUp=()=>{
+    const redirectOnSingUp = () => {
         navigate('/sing-up')
     }
-    if (auth){
+    if (auth) {
         navigate('/profile');
     }
 
@@ -51,7 +51,8 @@ const Login = () => {
                         <div className={style.inputContainer}>
                             <Field className={style.input} type="email" name="email" autoComplete="username"/>
                             <ErrorMessage name="email" component="div"/>
-                            <Field className={style.input} type="password" name="password"  autoComplete="current-password" />
+                            <Field className={style.input} type="password" name="password"
+                                   autoComplete="current-password"/>
                             <ErrorMessage name="password" component="div"/>
                         </div>
                         <div className={style.forgotContainer}>

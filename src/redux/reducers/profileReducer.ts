@@ -68,9 +68,10 @@ export const updateNickNameTC = (name: string, avatar: string) => {
     return (dispatch: Dispatch) => {
         cardsApi.updateUser(name, avatar)
             .then((res) => {
-                debugger
                 dispatch(updateHickNameAC(res.data.updatedUser.name))
-                dispatch(updateAvatar(res.data.updatedUser.avatar))
+                if (res.data.updatedUser.avatar) {
+                    dispatch(updateAvatar(res.data.updatedUser.avatar))
+                }
             })
             .catch((e) => {
                 const error = e.response

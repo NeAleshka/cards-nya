@@ -3,12 +3,12 @@ import style from '../style/Login.module.css';
 import {cardsApi} from "../CardsApi/Api";
 import {useNavigate, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {rootReducerType} from "../redux/store";
+import {RootReducerType} from "../redux/store";
 
 
 const CreateNewPass = () => {
     const [newPass, setNewPass] = useState<string>('')
-    const auth = useSelector<any, rootReducerType>(state => state.auth.isAuth);
+    const auth = useSelector<any, RootReducerType>(state => state.auth.isAuth);
     const navigate=useNavigate()
     if(!auth){
         navigate('/login')

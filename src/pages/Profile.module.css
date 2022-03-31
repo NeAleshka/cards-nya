@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+}
+
+.profile {
+    width: 300px;
+}
+
+.cards {
+    margin: auto;
+}
